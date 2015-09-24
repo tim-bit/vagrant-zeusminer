@@ -18,3 +18,9 @@ Boot up the VM again:
 ```
 $ vagrant up
 ```
+
+### Running the Miner
+
+```
+./mine -h HOST -u USERNAME -p PASSWORD
+```
