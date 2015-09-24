@@ -2,7 +2,7 @@
 		
 		# update aptitude
 		sudo apt-get update
-		sudo apt-get install -y bfgminer unzip gcc binutils
+		sudo apt-get install -y bfgminer unzip gcc binutils git
 		
 		cd /vagrant
 		
@@ -16,3 +16,8 @@
 		cd..
 		
 		# build bfgminer
+		git submodule update
+		cd bfgminer
+		./autogen.sh
+		./configure --enable-scrypt
+		
