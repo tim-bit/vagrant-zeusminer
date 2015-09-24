@@ -1,0 +1,19 @@
+#cd bfgminer
+# GHASH.IO
+HOST="stratum+tcp://multi.ghash.io:3333"
+WORKER="up100496079.worker1"
+PASSWORD="foo"
+# cyrpto pools diamond
+#HOST="stratum+tcp://dmd.cryptopools.com:3345/#skipcbcheck"
+#WORKER="timbit87.home_mac_pro"
+#PASSWORD="workit"
+# multipool dmd
+#HOST="stratum+tcp://scrypt.usa.nicehash.com:3333"
+#WORKER="15CSb7oLrhwB5tx3pgCtNHfwTTtL5xtanu"
+#PASSWORD="x"
+
+HOST=$1
+USER=$2
+PASS=$3
+
+sudo ./bfgminer -S zeusminer:/dev/ttyUSB0 --set-device zeusminer:ignore_golden_nonce=1 --set-device zeusminer:clock=340 --scrypt -o $HOST -u $WORKER -p $PASSWORD
