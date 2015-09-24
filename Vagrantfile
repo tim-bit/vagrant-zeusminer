@@ -7,18 +7,12 @@ Vagrant.configure(2) do |config|
 	
 	# Synced folder
 	config.vm.synced_folder ".", "/vagrant"
+	
+	# Set name of VM
+  config.vm.provider :virtualbox do |vb|
+		vb.name = "vagrant-zeusminer"
+  end
 
-	# Provisioning commands
-	config.vm.provision "shell", inline: <<-SHELL
-		sudo apt-get update
-		sudo apt-get install -y bfgminer unzip gcc binutils
-		wget http://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip
-		/cd/vagrant
-		unzip Linux_3.x.x_VCP_Driver_Source.zip
-		cd Linux_3.x.x_VCP_Driver_Source/
-		make
-		cp cp210x.ko /lib/modules/3.16.0-30-generic/kernel/drivers/usb/serial/
-		insmod /lib/modules/3.16.0-30-generic/kernel/drivers/usb/serial/usbserial.ko
-		insmod cp210x.ko
-	SHELL
+  # Provisioning script
+  config.vm.provision :shell, :path => "bootstrap.sh"
 end
